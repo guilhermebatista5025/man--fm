@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Sobre a Rádio | Rádio Maná FM | Vila Velha ES</title>
+  <meta name="description" content="Conheça a história da Rádio Maná FM, nossa missão, visão, valores, cobertura de sinal digital na Grande Vitória e nossa infraestrutura de transmissão HD.">
+  <meta name="keywords" content="historia maná fm, missao visao valores radio, cobertura sinal radio es, estrutura emissora vila velha, rádio cristã">
+  <meta name="author" content="Rádio Maná FM">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://manafm.com.br/pages/sobre.html">
+  <meta property="og:title" content="Sobre a Rádio Maná FM | História e Valores">
+  <meta property="og:description" content="Saiba mais sobre a emissora cristã que abençoa a cidade de Vila Velha e a região metropolitana do ES.">
+  <meta property="og:image" content="../assets/logo.png">
+
+  <!-- Meta Mobile -->
+  <meta name="theme-color" content="#fdfbf2">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../assets/icons/favicon.ico" type="image/x-icon">
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/sobre.css">
+</head>
+<body class="sobre-body">
+
+  <!-- Elemento de áudio centralizado para o Player -->
+  <audio id="audio-player"></audio>
+
+  <!-- HEADER FIXO -->
+  <header class="header">
+    <a href="../index.html" class="header-logo" aria-label="Ir para a página inicial da Rádio Maná FM">
+      <img src="../assets/logo.png" alt="Maná FM" class="logo-img">
+    </a>
+
+    <!-- Menu de Navegação -->
+    <nav class="nav-links" id="nav-links" aria-label="Navegação da página institucional">
+      <a href="../index.html" class="nav-link">Início</a>
+      <a href="#" class="nav-link active">Sobre a Rádio</a>
+      <a href="./noticias.html" class="nav-link">Notícias</a>
+      <a href="../index.html#programacao" class="nav-link">Programação</a>
+      <a href="./comercial.html" class="nav-link nav-link-destaque">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 13v-2Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        Anuncie
+      </a>
+    </nav>
+
+    <!-- Ações do Header -->
+    <div class="header-actions">
+      <!-- Badge NO AR -->
+      <div class="badge-no-ar" id="badge-no-ar" aria-live="polite">
+        <span class="indicator"></span>
+        NO AR
+      </div>
+      
+      <!-- Menu Hamburguer Mobile -->
+      <button class="menu-hamburger" id="menu-hamburger" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================================================
+         1. HERO SECTION - Sobre a Rádio
+         ================================================ -->
+    <section class="sobre-hero" id="home">
+      <div class="container-wrapper">
+        <div class="sobre-hero-content">
+          <span class="sobre-hero-tag reveal">Institucional</span>
+          <h1 class="sobre-hero-title reveal" style="transition-delay: 0.1s;">
+            A voz e a mensagem que<br><span>abençoam Vila Velha</span>
+          </h1>
+        </div>
+      </div>
+      <!-- Onda Decorativa de Transição -->
+      <div class="hero-wave-separator" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="var(--bg-secondary)"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ================================================
+         2. HISTÓRIA DA RÁDIO (Timeline)
+         ================================================ -->
+    <section class="sobre-historia" id="historia">
+      <div class="container-wrapper">
+        <div class="section-intro reveal">
+          <h2 class="section-title">Nossa <span>História</span></h2>
+          <p class="section-subtitle">A trajetória que nos transformou na emissora preferida dos capixabas.</p>
+        </div>
+
+        <div class="historia-layout">
+          <!-- Coluna da Imagem: Pessoa Operando a Rádio -->
+          <div class="historia-img-col reveal">
+            <div class="historia-img-frame">
+              <img src="../assets/images/sobre_historia_operator.png" alt="Locutor operando a transmissão nos estúdios da Rádio Maná FM" class="historia-img">
+              <div class="historia-img-badge">Edificando Vidas</div>
+            </div>
+          </div>
+
+          <!-- Coluna de Texto: Narrativa da História -->
+          <div class="historia-text-col reveal" style="transition-delay: 0.15s;">
+            <div class="historia-narrative">
+              <span class="narrative-tag">Nossa Trajetória</span>
+              <h3 class="narrative-title">Sintonizando conquistas e conectando corações</h3>
+              <p class="narrative-text">
+                Fundada com o propósito de levar amor, louvor e a palavra a todos os lares, a Rádio Maná FM iniciou sua trajetória de sucesso conectando corações. Ao longo dos anos, expandimos de forma marcante nosso sinal digital para toda a Grande Vitória. Hoje, com uma programação dinâmica e inspiradora, estúdios modernos de última geração e uma audiência qualificada e fiel em todo o Espírito Santo, a Maná FM continua sendo a voz cristã que abençoa e acompanha a preferência diária de milhares de capixabas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         3. MISSÃO, VISÃO E VALORES (Bento Grid)
+         ================================================ -->
+    <section class="sobre-mvv" id="mvv">
+      <div class="container-wrapper">
+        <div class="section-intro reveal">
+          <h2 class="section-title">Diretrizes <span>Institucionais</span></h2>
+          <p class="section-subtitle">Os pilares éticos e operacionais que orientam nosso dia a dia na emissora.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card Missão (Gold Gradient background) -->
+          <div class="bento-card card-missao reveal">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3>Missão</h3>
+            <p>Levar entretenimento de excelência, informação ágil e música cativante que melhorem a rotina dos nossos ouvintes, conectando marcas a consumidores de forma autêntica e gerando valor constante para a comunidade de Vila Velha e Espírito Santo.</p>
+          </div>
+
+          <!-- Card Visão -->
+          <div class="bento-card card-visao reveal" style="transition-delay: 0.1s;">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Visão</h3>
+            <p>Ser a emissora multiplataforma líder em engajamento e inovação digital no Espírito Santo, sendo reconhecida como referência máxima em qualidade sonora, ética informativa e eficiência em campanhas de publicidade até 2030.</p>
+          </div>
+
+          <!-- Card Valores (Larger card with lists) -->
+          <div class="bento-card card-valores reveal" style="transition-delay: 0.2s;">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            </div>
+            <h3>Nossos Valores</h3>
+            <ul class="valores-list">
+              <li>
+                <strong>Veracidade:</strong> Compromisso inabalável com a verdade jornalística.
+              </li>
+              <li>
+                <strong>Valorização Local:</strong> Foco no fortalecimento da cultura e economia de Vila Velha.
+              </li>
+              <li>
+                <strong>Inovação:</strong> Busca contínua por tecnologias que melhorem a escuta e transmissão.
+              </li>
+              <li>
+                <strong>Inclusão e Respeito:</strong> Programação aberta à diversidade do nosso público.
+              </li>
+              <li>
+                <strong>Foco no Cliente:</strong> Soluções comerciais criativas e focadas no retorno de nossos anunciantes.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         4. COBERTURA DE SINAL
+         ================================================ -->
+    <section class="sobre-cobertura" id="cobertura">
+      <div class="container-wrapper">
+        <div class="cobertura-layout">
+          <!-- Coluna Texto -->
+          <div class="cobertura-info reveal">
+            <span class="sobre-hero-tag">Alcance Digital</span>
+            <h2>Sinal Forte em toda a<br><span>Grande Vitória</span></h2>
+            <p>
+              Operando através de conexões digitais de alta performance e transmissão de ponta direto de Vila Velha, a Maná FM cobre com perfeição toda a Região Metropolitana e alcança ouvintes em todo o mundo.
+            </p>
+            <div class="cobertura-stats">
+              <div class="stat-item">
+                <h4>5</h4>
+                <p>Municípios Cobertos</p>
+              </div>
+              <div class="stat-item">
+                <h4>WEB / APP</h4>
+                <p>Transmissão Digital</p>
+              </div>
+              <div class="stat-item">
+                <h4>100%</h4>
+                <p>Qualidade HD Digital</p>
+              </div>
+            </div>
+            <ul class="municipios-lista">
+              <li><strong>Vila Velha</strong> (Cobertura Total)</li>
+              <li><strong>Vitória</strong> (Cobertura Total)</li>
+              <li><strong>Cariacica</strong> (Cobertura Forte)</li>
+              <li><strong>Serra</strong> (Cobertura Forte)</li>
+              <li><strong>Guarapari</strong> (Cobertura Litoral)</li>
+            </ul>
+          </div>
+
+          <!-- Coluna Gráfica: SVG de Cobertura Animado -->
+          <div class="cobertura-map reveal" style="transition-delay: 0.15s;">
+            <div class="map-container">
+              <svg class="interactive-map-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Circunferências concêntricas de Sinal -->
+                <circle cx="250" cy="250" r="230" class="signal-ring ring-4" />
+                <circle cx="250" cy="250" r="170" class="signal-ring ring-3" />
+                <circle cx="250" cy="250" r="110" class="signal-ring ring-2" />
+                <circle cx="250" cy="250" r="50" class="signal-ring ring-1" />
+
+                <!-- Conexões/Linhas de Radar -->
+                <line x1="250" y1="250" x2="150" y2="100" class="radar-line" />
+                <line x1="250" y1="250" x2="350" y2="120" class="radar-line" />
+                <line x1="250" y1="250" x2="110" y2="300" class="radar-line" />
+                <line x1="250" y1="250" x2="380" y2="350" class="radar-line" />
+
+                <!-- Vila Velha (Ponto Transmissor Principal) -->
+                <g class="city-point main-city">
+                  <circle cx="250" cy="250" r="15" class="glow-effect" />
+                  <circle cx="250" cy="250" r="8" class="core-point" />
+                  <text x="250" y="225" text-anchor="middle" class="city-label label-main">VILA VELHA (MANÁ FM)</text>
+                </g>
+
+                <!-- Vitória -->
+                <g class="city-point">
+                  <circle cx="300" cy="180" r="10" class="glow-effect" />
+                  <circle cx="300" cy="180" r="5" class="core-point" />
+                  <text x="315" y="184" class="city-label">Vitória</text>
+                </g>
+
+                <!-- Cariacica -->
+                <g class="city-point">
+                  <circle cx="160" cy="210" r="10" class="glow-effect" />
+                  <circle cx="160" cy="210" r="5" class="core-point" />
+                  <text x="145" y="214" text-anchor="end" class="city-label">Cariacica</text>
+                </g>
+
+                <!-- Serra -->
+                <g class="city-point">
+                  <circle cx="350" cy="120" r="10" class="glow-effect" />
+                  <circle cx="350" cy="120" r="5" class="core-point" />
+                  <text x="365" y="124" class="city-label">Serra</text>
+                </g>
+
+                <!-- Guarapari -->
+                <g class="city-point">
+                  <circle cx="190" cy="380" r="10" class="glow-effect" />
+                  <circle cx="190" cy="380" r="5" class="core-point" />
+                  <text x="190" y="405" text-anchor="middle" class="city-label">Guarapari</text>
+                </g>
+              </svg>
+              <div class="radar-glow-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+         5. ESTRUTURA DA EMISSORA (Galeria da Infraestrutura)
+         ================================================ -->
+    <section class="sobre-estrutura" id="estrutura">
+      <div class="container-wrapper">
+        <div class="section-intro reveal">
+          <h2 class="section-title">Nossa <span>Estrutura</span></h2>
+          <p class="section-subtitle">Tecnologia digital de ponta e ambientes projetados para a melhor radiodifusão.</p>
+        </div>
+
+        <div class="estrutura-grid">
+          <!-- Card 1 -->
+          <div class="estrutura-card reveal">
+            <div class="estrutura-img-frame">
+              <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" class="estrutura-icon-svg">
+                <rect width="100%" height="100%" fill="rgba(166, 124, 30, 0.04)" />
+                <path d="M50 75 h100 M60 55 v40 M140 55 v40 M80 75 a20 20 0 0 1 40 0" fill="none" stroke="currentColor" stroke-width="4" opacity="0.3"/>
+                <circle cx="100" cy="75" r="15" fill="none" stroke="currentColor" stroke-width="6" />
+              </svg>
+            </div>
+            <div class="estrutura-text">
+              <h3>Estúdio Principal HD</h3>
+              <p>Equipado com os microfones mais modernos do mercado de áudio e console digital Shure de última geração. O local de onde transmitem nossos locutores ao vivo.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="estrutura-card reveal" style="transition-delay: 0.1s;">
+            <div class="estrutura-img-frame">
+              <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" class="estrutura-icon-svg">
+                <rect width="100%" height="100%" fill="rgba(166, 124, 30, 0.04)" />
+                <path d="M40 40 h120 v60 h-120 z M80 100 v20 M120 100 v20 M60 120 h80" fill="none" stroke="currentColor" stroke-width="4" opacity="0.3"/>
+                <circle cx="100" cy="70" r="12" fill="currentColor" />
+              </svg>
+            </div>
+            <div class="estrutura-text">
+              <h3>Estúdio de Produção</h3>
+              <p>Central de edição e sonorização acústica onde são produzidos nossos spots comerciais, vinhetas personalizadas e jingles exclusivos com qualidade sonora impecável.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="estrutura-card reveal" style="transition-delay: 0.2s;">
+            <div class="estrutura-img-frame">
+              <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" class="estrutura-icon-svg">
+                <rect width="100%" height="100%" fill="rgba(166, 124, 30, 0.04)" />
+                <path d="M100 20 L40 130 h120 z M100 20 v110 M70 80 h60" fill="none" stroke="currentColor" stroke-width="4" opacity="0.3"/>
+                <circle cx="100" cy="20" r="8" fill="currentColor" />
+              </svg>
+            </div>
+            <div class="estrutura-text">
+              <h3>Parque de Transmissão</h3>
+              <p>Nossos racks de transmissão digital operam com sistemas redundantes de energia (gerador próprio) e transmissores de alta potência no topo de Vila Velha.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-col-about">
+        <div class="footer-logo">
+          <img src="../assets/logo.png" alt="Maná FM" class="logo-img-footer">
+        </div>
+        <p class="footer-about-text">A Rádio Maná FM opera com qualidade digital e transmissão HD diretamente de Vila Velha – ES para todo o mundo via web.</p>
+      </div>
+
+      <div class="footer-col-links">
+        <h4>Navegação</h4>
+        <ul class="footer-links-list">
+          <li class="footer-link-item"><a href="../index.html">Início</a></li>
+          <li class="footer-link-item"><a href="#historia">História</a></li>
+          <li class="footer-link-item"><a href="#mvv">Missão e Valores</a></li>
+          <li class="footer-link-item"><a href="#cobertura">Cobertura de Sinal</a></li>
+          <li class="footer-link-item"><a href="#estrutura">Infraestrutura</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-social">
+        <h4>Redes Sociais</h4>
+        <div class="footer-social-icons">
+          <a href="https://instagram.com" class="footer-social-btn" aria-label="Instagram Rádio Maná FM" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://wa.me/5527999879870" class="footer-social-btn" aria-label="WhatsApp Rádio Maná FM" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="ano-copyright">2026</span> Rádio Maná FM. Todos os direitos reservados. "Sua Rádio Cristã".</p>
+      <a href="../index.html" class="footer-policy-link">Política de Privacidade / LGPD</a>
+    </div>
+  </footer>
+
+  <!-- Persistent Sticky Bottom Player Bar -->
+  <div class="sticky-player-bar" id="sticky-player">
+    <div class="sticky-player-container">
+      
+      <!-- Lado Esquerdo: Info da Rádio e RDS -->
+      <div class="sticky-player-meta">
+        <div class="sticky-vinyl-wrapper">
+          <div class="sticky-vinyl-disc" aria-hidden="true"></div>
+        </div>
+        <div class="sticky-track-info">
+          <h4 id="sticky-musica">Carregando...</h4>
+          <p id="sticky-artista">Rádio Maná FM</p>
+        </div>
+        <!-- Mini indicador "Ao Vivo" -->
+        <span class="sticky-live-badge" id="sticky-badge-ao-vivo">
+          <span class="bullet"></span>
+          AO VIVO
+        </span>
+      </div>
+
+      <!-- Centro: Controles de Áudio Principais -->
+      <div class="sticky-player-controls">
+        <!-- Play / Pause -->
+        <button class="btn-sticky-play" id="btn-sticky-play-pause" aria-label="Tocar ou pausar transmissão ao vivo">
+          <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <svg class="pause-icon-svg" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+
+        <!-- Mini Equalizador Animado -->
+        <div class="sticky-equalizer" id="sticky-equalizer" aria-label="Indicador visual de áudio" aria-live="polite">
+          <span class="sticky-equalizer-bar"></span>
+          <span class="sticky-equalizer-bar"></span>
+          <span class="sticky-equalizer-bar"></span>
+          <span class="sticky-equalizer-bar"></span>
+        </div>
+      </div>
+
+      <!-- Lado Direito: Volume & Pedido Musical -->
+      <div class="sticky-player-actions">
+        <!-- Controle de Volume -->
+        <div class="sticky-volume-container">
+          <button class="btn-sticky-mute" id="btn-sticky-mute" aria-label="Ativar ou desativar mudo">
+            <svg id="sticky-volume-high-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg id="sticky-volume-muted-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <input type="range" class="sticky-volume-slider" id="sticky-volume-slider" min="0" max="1" step="0.05" value="0.8" aria-label="Ajustar volume">
+        </div>
+
+        <!-- Botão Pedir Música (Ação rápida WhatsApp) -->
+        <a href="https://wa.me/5527999879870?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20uma%20m%C3%BAsica%20na%20programacao%20da%20R%C3%A1dio%20Man%C3%A1%20FM." class="btn-sticky-request" target="_blank" rel="noopener" aria-label="Falar com o locutor no WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          Pedir Música
+        </a>
+      </div>
+
+      <!-- Botão de Fechar o Player (X) -->
+      <button class="btn-sticky-close" id="btn-sticky-close" aria-label="Fechar player">&times;</button>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript -->
+  <script src="../js/script.js"></script>
+  <script src="../js/player.js"></script>
+</body>
+</html>

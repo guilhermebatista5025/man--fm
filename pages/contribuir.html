@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Apoiar a Rádio | Rádio Maná FM | Vila Velha ES</title>
+  <meta name="description" content="Contribua para manter a Rádio Maná FM no ar. Faça sua contribuição simulada e segura via PIX ou Cartão de Crédito.">
+  <meta name="keywords" content="apoiar rádio maná fm, doar rádio, maná fm pix, contribuir rádio gospel es">
+  <meta name="author" content="Rádio Maná FM">
+
+  <!-- Meta Mobile -->
+  <meta name="theme-color" content="#fdfbf2">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../assets/icons/favicon.ico" type="image/x-icon">
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/contribuir.css">
+</head>
+<body class="sobre-body">
+
+  <!-- Elemento de áudio centralizado para o Player -->
+  <audio id="audio-player"></audio>
+
+  <!-- HEADER FIXO -->
+  <header class="header">
+    <a href="../index.html" class="header-logo" aria-label="Ir para a página inicial da Rádio Maná FM">
+      <img src="../assets/icons/logo.png" alt="Maná FM" class="logo-img">
+    </a>
+
+    <!-- Menu de Navegação -->
+    <nav class="nav-links" id="nav-links" aria-label="Navegação da página institucional">
+      <a href="../index.html" class="nav-link">Início</a>
+      <a href="./sobre.html" class="nav-link">Sobre a Rádio</a>
+      <a href="./noticias.html" class="nav-link">Notícias</a>
+      <a href="../index.html#programacao" class="nav-link">Programação</a>
+      <a href="./comercial.html" class="nav-link nav-link-destaque">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 13v-2Z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        Anuncie
+      </a>
+    </nav>
+
+    <!-- Ações do Header -->
+    <div class="header-actions">
+      <!-- Badge NO AR -->
+      <div class="badge-no-ar" id="badge-no-ar" aria-live="polite">
+        <span class="indicator"></span>
+        NO AR
+      </div>
+      
+      <!-- Menu Hamburguer Mobile -->
+      <button class="menu-hamburger" id="menu-hamburger" aria-expanded="false" aria-label="Abrir menu de navegação">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="checkout-section">
+      <div class="checkout-container">
+        
+        <div class="checkout-card">
+          <div class="checkout-header">
+            <h1>Apoie a Rádio Maná FM</h1>
+            <p>Ajude a manter nossa transmissão digital no ar com qualidade HD</p>
+            <div class="checkout-value-badge" id="display-value">R$ 5,00</div>
+          </div>
+
+          <!-- Indicador de Passos -->
+          <div class="checkout-steps">
+            <div class="step-item active" id="step-indicator-1">
+              <div class="step-number">1</div>
+              <div class="step-label">Identificação</div>
+            </div>
+            <div class="step-item" id="step-indicator-2">
+              <div class="step-number">2</div>
+              <div class="step-label">Pagamento</div>
+            </div>
+            <div class="step-item" id="step-indicator-3">
+              <div class="step-number">3</div>
+              <div class="step-label">Conclusão</div>
+            </div>
+          </div>
+
+          <!-- PASSO 1: Nome e Método de Pagamento -->
+          <div class="step-pane active" id="pane-step-1">
+            <div class="form-group">
+              <label for="donor-name">Seu Nome / Família:</label>
+              <input type="text" id="donor-name" class="form-input" placeholder="Ex: Família Souza ou Anônimo">
+            </div>
+
+            <div class="form-group">
+              <label>Forma de Pagamento:</label>
+              <div class="payment-methods-grid">
+                
+                <!-- Método PIX (Com Logo Oficial em SVG) -->
+                <div class="payment-method-card active" id="method-pix" onclick="selectPaymentMethodLocal('pix')">
+                  <div class="method-icon-wrapper">
+                    <img src="../assets/formas-de-pagamento/pix.png" alt="PIX" style="height: 100px; width: auto; object-fit: contain; margin-left: -10px;">
+                  </div>
+                </div>
+
+                <!-- Método Cartão (Com ícone real de Cartão) -->
+                <div class="payment-method-card" id="method-card" onclick="selectPaymentMethodLocal('card')">
+                  <div class="method-icon-wrapper">
+                    <img src="../assets/formas-de-pagamento/cartao.png" alt="Cartão de Crédito" style="height: 120px; width: auto; object-fit: contain; margin-left: -10px;">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="checkout-actions">
+              <button class="btn-checkout-back" onclick="window.location.href='../index.html'">Voltar ao Início</button>
+              <button class="btn-checkout-submit" onclick="proceedToPaymentDetailsLocal()">Gerar Pagamento</button>
+            </div>
+          </div>
+
+          <!-- PASSO 2: Detalhes do Pagamento -->
+          <div class="step-pane" id="pane-step-2">
+            
+            <div class="payment-details-wrapper">
+              
+              <!-- Detalhes do PIX -->
+              <div class="pix-details-box" id="pane-details-pix">
+                <p class="payment-instruction">Escaneie o código QR abaixo ou copie a chave PIX para realizar o pagamento simulado:</p>
+                <div class="pix-qrcode-simulated">
+                  <div class="simulated-qr-box">
+                    <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="2" width="6" height="6" fill="#1a3064"></rect>
+                      <rect x="16" y="2" width="6" height="6" fill="#1a3064"></rect>
+                      <rect x="2" y="16" width="6" height="6" fill="#1a3064"></rect>
+                      <path d="M9 5h6v4H9zM5 9v6h4V9zM15 9v6h4V9zM9 15h6v4H9z" stroke="#1a3064"></path>
+                      <circle cx="12" cy="12" r="1" fill="#1a3064"></circle>
+                    </svg>
+                  </div>
+                </div>
+                <div class="pix-key-wrapper">
+                  <input type="text" id="pix-copia-cola-local" value="" readonly>
+                  <button class="btn-copy-pix" onclick="copyPixKeyLocal()">Copiar Chave</button>
+                </div>
+              </div>
+
+              <!-- Detalhes do Cartão (COM VISUALIZAÇÃO INTERATIVA DO CARTÃO EM 3D) -->
+              <div class="card-details-box" id="pane-details-card" style="display:none;">
+                
+                <!-- Pré-visualização do Cartão 3D -->
+                <div class="card-preview-wrapper">
+                  <div class="credit-card-3d" id="credit-card-3d">
+                    
+                    <!-- Frente do Cartão -->
+                    <div class="card-face front">
+                      <div class="card-header-row">
+                        <div class="card-chip"></div>
+                        <div class="card-brand" id="card-brand-preview">MANÁ CARD</div>
+                      </div>
+                      
+                      <div class="card-number-display" id="card-num-preview">•••• •••• •••• ••••</div>
+                      
+                      <div class="card-footer-row">
+                        <div class="card-holder-info">
+                          <span class="card-label-small">Titular</span>
+                          <span class="card-holder-name" id="card-name-preview">APOIADOR ANÔNIMO</span>
+                        </div>
+                        <div class="card-expiry-info">
+                          <span class="card-label-small">Validade</span>
+                          <span class="card-expiry-date" id="card-expiry-preview">MM/AA</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Verso do Cartão -->
+                    <div class="card-face back">
+                      <div class="card-black-strip"></div>
+                      
+                      <div class="card-back-row-middle">
+                        <div class="card-hologram" id="card-hologram-preview"></div>
+                        <div class="card-signature-strip">
+                          <span class="card-signature-dummy-digits" id="card-signature-dummy-preview">1234</span>
+                          <span class="card-cvv-display" id="card-cvv-preview">•••</span>
+                        </div>
+                      </div>
+                      
+                      <div class="card-debossed-digits" id="card-num-debossed-preview">•••• •••• •••• ••••</div>
+                      
+                      <div class="card-back-footer">
+                        <p class="card-back-text">Simulação de Pagamento Segura. Rádio Maná FM 98.7 ES - Contribua com Amor.</p>
+                        <div class="card-back-bank-name">MANÁ BANK</div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="card-number-local">Número do Cartão:</label>
+                  <input type="text" id="card-number-local" placeholder="4000 1234 5678 9010" class="form-input" maxlength="19" oninput="updateCardNumber(this.value)">
+                </div>
+                <div class="form-group">
+                  <label for="card-holder-local">Nome do Titular:</label>
+                  <input type="text" id="card-holder-local" placeholder="Ex: JOÃO SILVA" class="form-input" oninput="updateCardHolder(this.value)">
+                </div>
+                <div class="card-row-double">
+                  <div class="form-group">
+                    <label for="card-expiry-local">Validade:</label>
+                    <input type="text" id="card-expiry-local" placeholder="MM/AA" class="form-input" maxlength="5" oninput="updateCardExpiry(this.value)">
+                  </div>
+                  <div class="form-group">
+                    <label for="card-cvv-local">CVV:</label>
+                    <input type="text" id="card-cvv-local" placeholder="123" class="form-input" maxlength="4" oninput="updateCardCvv(this.value)" onfocus="flipCard(true)" onblur="flipCard(false)">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="checkout-actions">
+              <button class="btn-checkout-back" onclick="backToStep1Local()">Voltar</button>
+              <button class="btn-checkout-submit" onclick="confirmSimulatedDonationLocal()">Confirmar Pagamento</button>
+            </div>
+          </div>
+
+          <!-- PASSO 3: Tela de Sucesso -->
+          <div class="step-pane" id="pane-step-3">
+            <div class="success-box">
+              <div class="success-icon-wrapper">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark-circle" cx="26" cy="26" r="25" />
+                  <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                </svg>
+              </div>
+              <h2>Contribuição Confirmada!</h2>
+              <p>Que Deus abençoe grandemente a sua vida e a sua família. Muito obrigado por ajudar a manter a Rádio Maná FM no ar!</p>
+              
+              <div class="countdown-box">
+                Você será redirecionado para a página inicial em <span id="countdown-timer" class="countdown-number">4</span> segundos...
+              </div>
+
+              <div>
+                <a href="../index.html" class="btn-success-home">Voltar Agora</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-col-about">
+        <div class="footer-logo">
+          <img src="../assets/icons/logo.png" alt="Maná FM" class="logo-img-footer">
+        </div>
+        <p class="footer-about-text">A Rádio Maná FM opera com qualidade digital e transmissão HD diretamente de Vila Velha – ES para todo o mundo via web.</p>
+      </div>
+
+      <div class="footer-col-links">
+        <h4>Navegação</h4>
+        <ul class="footer-links-list">
+          <li class="footer-link-item"><a href="../index.html">Início</a></li>
+          <li class="footer-link-item"><a href="./sobre.html">Sobre a Rádio</a></li>
+          <li class="footer-link-item"><a href="../index.html#player">Player</a></li>
+          <li class="footer-link-item"><a href="../index.html#noticias">Notícias</a></li>
+          <li class="footer-link-item"><a href="../index.html#programacao">Programação</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-social">
+        <h4>Redes Sociais</h4>
+        <div class="footer-social-icons">
+          <a href="https://instagram.com" class="footer-social-btn" aria-label="Instagram Rádio Maná FM" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://wa.me/5527999879870" class="footer-social-btn" aria-label="WhatsApp Rádio Maná FM" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="ano-copyright">2026</span> Rádio Maná FM. Todos os direitos reservados. "Sua Rádio Cristã".</p>
+      <a href="../index.html" class="footer-policy-link">Política de Privacidade / LGPD</a>
+    </div>
+  </footer>
+
+  <!-- Persistent Sticky Bottom Player Bar -->
+  <div class="sticky-player-bar" id="sticky-player">
+    <div class="sticky-player-container">
+      
+      <!-- Lado Esquerdo: Info da Rádio e RDS -->
+      <div class="sticky-player-meta">
+        <div class="sticky-vinyl-wrapper">
+          <div class="sticky-vinyl-disc" aria-hidden="true"></div>
+        </div>
+        <div class="sticky-track-info">
+          <h4 id="sticky-musica">Carregando...</h4>
+          <p id="sticky-artista">Rádio Maná FM</p>
+        </div>
+        <!-- Mini indicador "Ao Vivo" -->
+        <span class="sticky-live-badge" id="sticky-badge-ao-vivo">
+          <span class="bullet"></span>
+          AO VIVO
+        </span>
+      </div>
+
+      <!-- Centro: Controles de Áudio Principais -->
+      <div class="sticky-player-controls">
+        <!-- Play / Pause -->
+        <button class="btn-sticky-play" id="btn-sticky-play-pause" aria-label="Tocar ou pausar transmissão ao vivo">
+          <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <svg class="pause-icon-svg" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+
+        <!-- Mini Equalizador Animado -->
+        <div class="sticky-equalizer" id="sticky-equalizer" aria-label="Indicador visual de áudio" aria-live="polite">
+          <span class="sticky-equalizer-bar"></span>
+          <span class="sticky-equalizer-bar"></span>
+          <span class="sticky-equalizer-bar"></span>
+          <span class="sticky-equalizer-bar"></span>
+        </div>
+      </div>
+
+      <!-- Lado Direito: Volume & Pedido Musical -->
+      <div class="sticky-player-actions">
+        <!-- Controle de Volume -->
+        <div class="sticky-volume-container">
+          <button class="btn-sticky-mute" id="btn-sticky-mute" aria-label="Ativar ou desativar mudo">
+            <svg id="sticky-volume-high-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg id="sticky-volume-muted-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <input type="range" class="sticky-volume-slider" id="sticky-volume-slider" min="0" max="1" step="0.05" value="0.8" aria-label="Ajustar volume">
+        </div>
+
+        <!-- Botão Pedir Música (Ação rápida WhatsApp) -->
+        <a href="https://wa.me/5527999879870?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20uma%20m%C3%BAsica%20na%20programacao%20da%20R%C3%A1dio%20Man%C3%A1%20FM." class="btn-sticky-request" target="_blank" rel="noopener" aria-label="Falar com o locutor no WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          Pedir Música
+        </a>
+      </div>
+
+      <!-- Botão de Fechar o Player (X) -->
+      <button class="btn-sticky-close" id="btn-sticky-close" aria-label="Fechar player">&times;</button>
+    </div>
+  </div>
+
+  <!-- Scripts JavaScript -->
+  <script src="../js/script.js"></script>
+  <script src="../js/player.js"></script>
+
+  <!-- Lógica Específica de Checkout e 3D Cartão -->
+  <script src="../js/contribuir.js"></script>
+</body>
+</html>

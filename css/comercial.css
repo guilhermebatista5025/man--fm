@@ -1,0 +1,1234 @@
+/* ==========================================================================
+   RÁDIO PULSO FM - PORTAL COMERCIAL (CSS)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BASE DO CORPO
+   -------------------------------------------------------------------------- */
+.comercial-body {
+  background-color: var(--bg-primary);
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+}
+
+/* Layout container */
+.container-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Section title (reuso no comercial) */
+.section-title {
+  font-family: var(--font-accent);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.section-title span {
+  color: var(--color-gold);
+}
+
+/* --------------------------------------------------------------------------
+   2. HERO SECTION
+   -------------------------------------------------------------------------- */
+.comercial-hero {
+  position: relative;
+  min-height: auto;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  padding: 80px 0 0 0; /* padding-top de 80px para compensar o header fixo, sem espaçamento nas laterais ou abaixo */
+  display: block;
+}
+
+/* Revert comercial header to light global style */
+#comercial-header {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: var(--glass-filter) !important;
+  -webkit-backdrop-filter: var(--glass-filter) !important;
+  border-bottom: 1px solid var(--border-glass) !important;
+  transition: var(--transition);
+}
+
+#comercial-header .header-logo-text {
+  color: var(--color-white) !important;
+}
+
+#comercial-header .nav-link {
+  color: var(--color-white) !important;
+}
+
+#comercial-header .nav-link:hover,
+#comercial-header .nav-link.active {
+  color: var(--color-gold) !important;
+}
+
+#comercial-header .menu-hamburger span {
+  background-color: var(--color-white) !important;
+}
+
+.hero-comercial-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-image-link {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.hero-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hero-image-link:hover .hero-banner-img {
+  transform: scale(1.015);
+}
+
+/* Carrossel do Hero Comercial */
+.comercial-hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 480px; /* Altura de Hero mais compacta */
+  min-height: auto;
+  aspect-ratio: auto;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid var(--border-glass);
+  background: #000000;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  display: block;
+  overflow: hidden;
+  transition:
+    opacity 0.8s ease-in-out,
+    visibility 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: none;
+  transform: none;
+}
+
+.carousel-slide.active .carousel-img {
+  transform: none;
+}
+
+/* Botões de Navegação Lateral */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.7; /* Visível no desktop */
+}
+
+.carousel-nav-btn.prev {
+  left: 30px;
+}
+
+.carousel-nav-btn.next {
+  right: 30px;
+}
+
+.carousel-nav-btn:hover {
+  background: var(--color-gold);
+  color: var(--bg-primary);
+  border-color: var(--color-gold);
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(166, 124, 30, 0.5);
+}
+
+.carousel-nav-btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* Indicadores (Dots) */
+.carousel-dots {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.carousel-dot.active {
+  background: var(--color-gold);
+  width: 22px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(166, 124, 30, 0.5);
+}
+
+/* Responsividade do Carrossel */
+@media (max-width: 992px) {
+  .comercial-hero-carousel {
+    height: 360px;
+    min-height: auto;
+  }
+  .carousel-nav-btn {
+    width: 44px;
+    height: 44px;
+    left: 20px;
+  }
+  .carousel-nav-btn.next {
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comercial-hero-carousel {
+    height: 300px;
+  }
+  .carousel-nav-btn {
+    opacity: 0.8;
+    width: 40px;
+    height: 40px;
+    left: 15px;
+  }
+  .carousel-nav-btn.next {
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comercial-hero-carousel {
+    height: 260px;
+  }
+  .carousel-dots {
+    bottom: 12px;
+    padding: 6px 10px;
+  }
+  .carousel-nav-btn {
+    display: none;
+  }
+}
+
+/* Onda separadora */
+.hero-wave-separator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.hero-wave-separator svg {
+  display: block;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. MARQUEE DE PARCEIROS
+   -------------------------------------------------------------------------- */
+.parceiros-marquee-section {
+  background: var(--bg-secondary);
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-glass);
+  overflow: hidden;
+}
+
+.parceiros-marquee-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.parceiros-marquee-header p {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gray);
+}
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(166, 124, 30, 0.12);
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.marquee-item:hover {
+  border-color: rgba(166, 124, 30, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.parceiro-text-logo {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-gray);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------------------------------
+   4. SEÇÃO DE DADOS & MÉTRICAS
+   -------------------------------------------------------------------------- */
+.dados-section {
+  padding: 100px 0;
+  background: var(--bg-primary);
+}
+
+.dados-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.dados-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-gray);
+  max-width: 640px;
+  margin: 20px auto 0 auto;
+  line-height: 1.7;
+}
+
+.dados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-gold);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.dado-card {
+  padding: 50px 30px;
+  text-align: center;
+  border-right: 1px solid var(--border-glass);
+  position: relative;
+  transition: var(--transition);
+}
+
+.dado-card:last-child {
+  border-right: none;
+}
+
+.dado-card:hover {
+  background: rgba(166, 124, 30, 0.03);
+}
+
+.dado-card-destaque {
+  background: rgba(166, 124, 30, 0.04);
+}
+
+.dado-numero {
+  font-family: var(--font-accent);
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 900;
+  color: var(--color-white);
+  margin-bottom: 10px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.dado-card-destaque .dado-numero {
+  color: var(--color-gold);
+}
+
+.dado-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray);
+  margin-bottom: 6px;
+}
+
+.dado-desc {
+  font-size: 0.8rem;
+  color: rgba(85, 85, 85, 0.6);
+}
+
+.dados-fonte {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-gray);
+  margin-top: 20px;
+  opacity: 0.7;
+}
+
+.dados-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* --------------------------------------------------------------------------
+   5. TECNOLOGIA & INOVAÇÃO
+   -------------------------------------------------------------------------- */
+.tecnologia-section {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(135deg, #1a1008 0%, #2d1f0a 50%, #1a1008 100%);
+  overflow: hidden;
+}
+
+.tecnologia-bg-waves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: rgba(166, 124, 30, 0.03);
+  border-radius: 40%;
+  animation: waveDrift 8s ease-in-out infinite;
+}
+
+.wave1 {
+  top: -50%;
+  animation-delay: 0s;
+}
+.wave2 {
+  top: -30%;
+  animation-delay: -3s;
+  opacity: 0.5;
+}
+.wave3 {
+  top: -10%;
+  animation-delay: -6s;
+  opacity: 0.3;
+}
+
+@keyframes waveDrift {
+  0%,
+  100% {
+    transform: translateX(-5%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(5%) rotate(3deg);
+  }
+}
+
+.tecnologia-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.tecnologia-text {
+  flex: 1.3;
+}
+
+.tecnologia-pretitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.tecnologia-title {
+  font-family: var(--font-accent);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: #f4eee1;
+  line-height: 1.25;
+  margin-bottom: 22px;
+}
+
+.tecnologia-desc {
+  font-size: 1rem;
+  color: rgba(244, 238, 225, 0.7);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.tecnologia-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(166, 124, 30, 0.15);
+  border: 1px solid rgba(166, 124, 30, 0.3);
+  color: var(--color-gold);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tecnologia-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tec-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(166, 124, 30, 0.2);
+  border-radius: 16px;
+  padding: 24px 28px;
+  transition: var(--transition);
+}
+
+.tec-stat-card:hover {
+  background: rgba(166, 124, 30, 0.08);
+  border-color: rgba(166, 124, 30, 0.4);
+  transform: translateX(6px);
+}
+
+.tec-stat-num {
+  font-family: var(--font-accent);
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.tec-stat-label {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(244, 238, 225, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   6. BENEFÍCIOS
+   -------------------------------------------------------------------------- */
+.beneficios-section {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+}
+
+.beneficios-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.beneficios-pretitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.beneficio-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.beneficio-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-gold);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.beneficio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-gold);
+  border-color: rgba(166, 124, 30, 0.25);
+}
+
+.beneficio-card:hover::before {
+  opacity: 1;
+}
+
+.beneficio-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  background: rgba(166, 124, 30, 0.08);
+  border: 1px solid rgba(166, 124, 30, 0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--color-gold);
+  transition: var(--transition);
+}
+
+.beneficio-card:hover .beneficio-icon-wrapper {
+  background: var(--color-gold);
+  color: var(--bg-primary);
+  border-color: var(--color-gold);
+}
+
+.beneficio-card h3 {
+  font-family: var(--font-accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+.beneficio-card p {
+  font-size: 0.9rem;
+  color: var(--color-gray);
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   7. PRESENÇA MULTIPLATAFORMA
+   -------------------------------------------------------------------------- */
+.presenca-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--color-gold) 0%, #8f6711 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.presenca-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.presenca-inner {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.presenca-text {
+  flex: 1.4;
+  color: #fff;
+}
+
+.presenca-text h2 {
+  font-family: var(--font-accent);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.presenca-text h2 span {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.presenca-text p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+.presenca-lista {
+  list-style: none;
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.presenca-lista li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.presenca-lista li svg {
+  color: rgba(255, 255, 255, 0.9);
+  flex-shrink: 0;
+}
+
+.presenca-section .btn-comercial-primary {
+  background: #fff;
+  color: var(--color-gold);
+}
+
+.presenca-section .btn-comercial-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-gold-hover);
+}
+
+.presenca-stats-col {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.presenca-stat-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 24px 28px;
+  transition: var(--transition);
+}
+
+.presenca-stat-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-6px);
+}
+
+.presenca-stat-num {
+  font-family: var(--font-accent);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.presenca-stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* --------------------------------------------------------------------------
+   8. FORMULÁRIO COMERCIAL
+   -------------------------------------------------------------------------- */
+.contato-comercial-section {
+  padding: 100px 0;
+  background: var(--bg-primary);
+}
+
+.contato-comercial-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 70px;
+}
+
+.contato-comercial-info {
+  flex: 1;
+  position: sticky;
+  top: 100px;
+}
+
+.contato-pretitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
+.contato-comercial-info h2 {
+  font-family: var(--font-accent);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.contato-comercial-info h2 span {
+  color: var(--color-gold);
+}
+
+.contato-desc {
+  font-size: 1rem;
+  color: var(--color-gray);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.contato-beneficios-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.contato-beneficios-lista li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-gray);
+}
+
+.contato-check-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(166, 124, 30, 0.1);
+  border: 1px solid rgba(166, 124, 30, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.btn-whatsapp-consultor {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 15px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+}
+
+.btn-whatsapp-consultor:hover {
+  background: #1ebe5c;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.3);
+  color: #fff;
+}
+
+/* Formulário */
+.contato-comercial-form-col {
+  flex: 1.2;
+}
+
+.comercial-form-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: var(--shadow-dark);
+}
+
+.comercial-form-card h3 {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 30px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.form-row-comercial {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+.form-row-comercial .form-group-comercial {
+  flex: 1;
+}
+
+.form-group-comercial {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group-comercial label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-gray);
+}
+
+.form-group-comercial input,
+.form-group-comercial select,
+.form-group-comercial textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(166, 124, 30, 0.15);
+  background: #fafafa;
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-group-comercial input:focus,
+.form-group-comercial select:focus,
+.form-group-comercial textarea:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(166, 124, 30, 0.08);
+  background: #fff;
+}
+
+.form-group-comercial textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-checkboxes-comercial {
+  margin-bottom: 24px;
+}
+
+.checkbox-label-comercial {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 0.87rem;
+  color: var(--color-gray);
+  line-height: 1.5;
+}
+
+.checkbox-label-comercial input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+.btn-form-comercial-enviar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--color-gold);
+  color: var(--bg-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 17px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-gold);
+  transition: var(--transition);
+}
+
+.btn-form-comercial-enviar:hover:not(:disabled) {
+  background: var(--color-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(166, 124, 30, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   9. MODAL DE SUCESSO
+   -------------------------------------------------------------------------- */
+.modal-comercial-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(26, 16, 8, 0.5);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.modal-comercial-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-comercial-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 50px 40px;
+  max-width: 480px;
+  text-align: center;
+  box-shadow: var(--shadow-gold);
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-comercial-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(39, 174, 96, 0.1);
+  border: 2px solid rgba(39, 174, 96, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  color: #27ae60;
+}
+
+.modal-comercial-card h3 {
+  font-family: var(--font-accent);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 14px;
+}
+
+.modal-comercial-card p {
+  color: var(--color-gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.btn-modal-fechar {
+  background: var(--color-gold);
+  color: var(--bg-primary);
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-modal-fechar:hover {
+  background: var(--color-gold-hover);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVIDADE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-comercial-container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .dados-grid {
+    grid-template-columns: 1fr;
+  }
+  .dado-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border-glass);
+  }
+  .dado-card:last-child {
+    border-bottom: none;
+  }
+
+  .beneficios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tecnologia-content,
+  .presenca-inner,
+  .contato-comercial-inner {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .contato-comercial-info {
+    position: static;
+  }
+  .presenca-stats-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .presenca-stat-card {
+    flex: 1;
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row-comercial {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .form-group-comercial {
+    margin-bottom: 12px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+  }
+  .comercial-form-card {
+    padding: 28px 20px;
+  }
+  .tecnologia-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .tec-stat-card {
+    flex: 1;
+    min-width: 140px;
+  }
+  .hero-comercial-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-comercial-primary,
+  .btn-comercial-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

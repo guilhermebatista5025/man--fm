@@ -1,0 +1,24 @@
+# Node dependencies
+node_modules/
+
+# Credentials & Secrets (Extremamente Importante!)
+.env
+*.env
+backend/.env
+
+# SQLite local database (dados migrados para Supabase)
+*.db
+*.sqlite
+backend/database.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and cache
+*.log
+*.cache
+
+# AI / Editor Temp files
+
+~/antigravity-skills

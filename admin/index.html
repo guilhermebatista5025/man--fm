@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo | Rádio Maná FM</title>
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==========================================
+     1. TELA DE LOGIN (SECURITY GATE)
+     ========================================== -->
+  <div class="login-overlay" id="login-overlay" style="display: none;">
+    <div class="login-card" style="animation: fadeIn 0.6s ease;">
+      <div class="login-logo-wrapper">
+        <img src="../assets/logo.png" alt="Maná FM" class="logo-img" style="max-height: 70px; margin-bottom: 10px;">
+        <h2>MANÁ<span>FM</span></h2>
+      </div>
+      <h3>Acesso Administrativo</h3>
+      <p class="login-subtitle">Faça login para gerenciar o conteúdo do portal</p>
+      
+      <form id="form-login" novalidate>
+        <div class="input-group">
+          <label for="username">Usuário</label>
+          <input type="text" id="username" placeholder="Digite o usuário" required autocomplete="username">
+        </div>
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input type="password" id="password" placeholder="Digite a senha" required autocomplete="current-password">
+        </div>
+        <div class="error-msg" id="login-error-msg">Usuário ou senha incorretos!</div>
+        <button type="submit" class="btn-admin-primary">Entrar no Painel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+     2. PAINEL DE CONTROLE PRINCIPAL
+     ========================================== -->
+  <div class="admin-layout" id="admin-layout" style="display: flex;">
+    <!-- Barra Lateral (Sidebar) -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <img src="../assets/logo.png" alt="Maná FM" class="logo-img" style="max-height: 40px;">
+        <div class="brand-text">MANÁ<span>PAINEL</span></div>
+      </div>
+      
+      <nav class="sidebar-menu">
+        <button class="menu-item active" data-tab="tab-noticias">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Notícias
+        </button>
+        <button class="menu-item" data-tab="tab-programacao">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Programação
+        </button>
+        <button class="menu-item" data-tab="tab-locutores">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Locutores
+        </button>
+        <button class="menu-item" data-tab="tab-patrocinadores">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          Patrocinadores
+        </button>
+        <button class="menu-item" data-tab="tab-live">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M4.93 4.93 19.07 19.07M19.07 4.93 4.93 19.07" opacity="0"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+          Live Stream
+        </button>
+        <button class="menu-item" data-tab="tab-publicidade">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line><path d="M12 17v4M8 21h8"/></svg>
+          Publicidade
+        </button>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <a href="#" class="btn-sidebar-view" target="_blank">Ver Site ↗</a>
+        <button class="btn-sidebar-logout" id="btn-logout">Sair do Painel</button>
+      </div>
+    </aside>
+
+    <!-- Área de Conteúdo Principal -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <div class="header-welcome">
+          <h1>Olá, <span>Administrador</span></h1>
+          <p>Gerencie o conteúdo e a grade do portal Rádio Maná FM</p>
+        </div>
+        <div class="header-badge">Painel Administrativo</div>
+      </header>
+
+      <!-- ==========================================
+         A. TAB: NOTÍCIAS
+         ========================================== -->
+      <section class="admin-section active" id="tab-noticias">
+        <div class="section-card-header">
+          <h2>Gerenciamento de Notícias</h2>
+          <button class="btn-admin-add" id="btn-nova-noticia">Postar Nova Notícia</button>
+        </div>
+
+        <!-- Formulário Notícia (Modal Wizard Popup) -->
+        <div class="admin-modal-overlay" id="form-noticia-wrapper" style="display: none;">
+          <div class="form-container-card modal-card">
+            <div class="modal-card-header">
+              <h3 id="form-noticia-titulo">Nova Notícia</h3>
+              <button type="button" class="btn-modal-close" onclick="fecharFormulario('noticia')">&times;</button>
+            </div>
+
+            <!-- Indicador de Etapas -->
+            <div class="wizard-steps-indicator" id="indicator-noticia">
+              <div class="wizard-step-node active" data-step="1">1<span>Geral</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="2">2<span>Mídia</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="3">3<span>Conteúdo</span></div>
+            </div>
+
+            <form id="form-noticia" novalidate>
+              <input type="hidden" id="noticia-edit-id">
+              
+              <!-- Etapa 1: Informações Gerais -->
+              <div class="form-step-pane active" data-step="1">
+                <div class="form-row">
+                  <div class="input-group flex-2">
+                    <label for="n-titulo">Título da Notícia</label>
+                    <input type="text" id="n-titulo" placeholder="Ex: Show histórico movimenta orla..." required>
+                  </div>
+                  <div class="input-group">
+                    <label for="n-categoria">Categoria</label>
+                    <select id="n-categoria" required>
+                      <option value="Local">Local</option>
+                      <option value="Nacional">Nacional</option>
+                      <option value="Esporte">Esporte</option>
+                      <option value="Entretenimento">Entretenimento</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="n-data">Data de Exibição</label>
+                  <input type="text" id="n-data" placeholder="30 de Maio de 2026" required>
+                </div>
+              </div>
+
+              <!-- Etapa 2: Mídia e Resumo -->
+              <div class="form-step-pane" data-step="2">
+                <div class="input-group">
+                  <label>Imagem de Destaque</label>
+                  <div class="image-upload-wrapper">
+                    <input type="url" id="n-imagem" placeholder="Cole a URL da Imagem... (opcional)">
+                    <div class="upload-divider"><span>OU</span></div>
+                    <div class="file-upload-box" id="n-upload-box">
+                      <input type="file" id="n-foto-file" accept="image/*" class="file-input-hidden">
+                      <div class="upload-box-content">
+                        <svg class="upload-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <span class="upload-text">Fazer Upload de Imagem</span>
+                      </div>
+                      <div class="upload-box-loading" style="display: none;">
+                        <div class="upload-spinner"></div>
+                        <span>Processando imagem...</span>
+                      </div>
+                      <div class="upload-box-preview" style="display: none;">
+                        <img id="n-upload-preview" src="" alt="Preview">
+                        <button type="button" class="btn-remove-upload" onclick="removerUpload('noticia')">&times;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="n-resumo">Resumo da Notícia (Linha Fina / Card Grid)</label>
+                  <textarea id="n-resumo" rows="3" placeholder="Resumo curto que aparece no card da notícia..." required></textarea>
+                </div>
+              </div>
+
+              <!-- Etapa 3: Texto Completo -->
+              <div class="form-step-pane" data-step="3">
+                <div class="input-group">
+                  <label for="n-texto">Texto Completo (HTML permitido no modal de leitura)</label>
+                  <textarea id="n-texto" rows="8" placeholder="Escreva a notícia completa. Você pode usar tags HTML como <p>, <strong>, etc." required></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-admin-cancel" id="btn-cancela-noticia">Cancelar</button>
+                <button type="button" class="btn-wizard-prev" id="btn-prev-noticia" onclick="voltarEtapa('noticia')" style="display: none;">Voltar</button>
+                <button type="button" class="btn-wizard-next" id="btn-next-noticia" onclick="avancarEtapa('noticia')">Avançar</button>
+                <button type="submit" class="btn-admin-save" id="btn-save-noticia" style="display: none;">Salvar Notícia</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tabela/Listagem de Notícias -->
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Imagem</th>
+                <th>Título</th>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th class="actions-col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="lista-noticias-corpo">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         B. TAB: PROGRAMAÇÃO
+         ========================================== -->
+      <section class="admin-section" id="tab-programacao">
+        <div class="section-card-header">
+          <h2>Grade de Programação Semanal</h2>
+          <button class="btn-admin-add" id="btn-novo-programa">Cadastrar Novo Horário</button>
+        </div>
+
+        <!-- Formulário Programa (Modal Wizard Popup) -->
+        <div class="admin-modal-overlay" id="form-programa-wrapper" style="display: none;">
+          <div class="form-container-card modal-card">
+            <div class="modal-card-header">
+              <h3 id="form-programa-titulo">Novo Programa</h3>
+              <button type="button" class="btn-modal-close" onclick="fecharFormulario('programa')">&times;</button>
+            </div>
+
+            <!-- Indicador de Etapas -->
+            <div class="wizard-steps-indicator" id="indicator-programa">
+              <div class="wizard-step-node active" data-step="1">1<span>Atração</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="2">2<span>Apresentação</span></div>
+            </div>
+
+            <form id="form-programa" novalidate>
+              <input type="hidden" id="programa-edit-id">
+              
+              <!-- Etapa 1: Atração Principal -->
+              <div class="form-step-pane active" data-step="1">
+                <div class="input-group">
+                  <label for="p-titulo">Nome da Atração / Programa</label>
+                  <input type="text" id="p-titulo" placeholder="Ex: Conexão Cidade" required>
+                </div>
+                <div class="input-group">
+                  <label for="p-horario">Horário de Exibição</label>
+                  <input type="text" id="p-horario" placeholder="Ex: 09:00 - 12:00" required>
+                </div>
+              </div>
+
+              <!-- Etapa 2: Apresentação e Posição -->
+              <div class="form-step-pane" data-step="2">
+                <div class="input-group">
+                  <label for="p-locutor">Locutor / Apresentador</label>
+                  <input type="text" id="p-locutor" placeholder="Ex: Rodrigo Silveira" required>
+                </div>
+                <div class="input-group">
+                  <label for="p-ordem">Posição na Grade (Ordem)</label>
+                  <input type="number" id="p-ordem" min="1" max="20" placeholder="1" required>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-admin-cancel" id="btn-cancela-programa">Cancelar</button>
+                <button type="button" class="btn-wizard-prev" id="btn-prev-programa" onclick="voltarEtapa('programa')" style="display: none;">Voltar</button>
+                <button type="button" class="btn-wizard-next" id="btn-next-programa" onclick="avancarEtapa('programa')">Avançar</button>
+                <button type="submit" class="btn-admin-save" id="btn-save-programa" style="display: none;">Salvar Horário</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Listagem de Programas -->
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Posição</th>
+                <th>Horário</th>
+                <th>Programa</th>
+                <th>Locutor / Apresentador</th>
+                <th class="actions-col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="lista-programacao-corpo">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         C. TAB: LOCUTORES
+         ========================================== -->
+      <section class="admin-section" id="tab-locutores">
+        <div class="section-card-header">
+          <h2>Equipe de Locutores</h2>
+          <button class="btn-admin-add" id="btn-novo-locutor">Cadastrar Locutor</button>
+        </div>
+
+        <!-- Formulário Locutor (Modal Wizard Popup) -->
+        <div class="admin-modal-overlay" id="form-locutor-wrapper" style="display: none;">
+          <div class="form-container-card modal-card">
+            <div class="modal-card-header">
+              <h3 id="form-locutor-titulo">Cadastrar Locutor</h3>
+              <button type="button" class="btn-modal-close" onclick="fecharFormulario('locutor')">&times;</button>
+            </div>
+
+            <!-- Indicador de Etapas -->
+            <div class="wizard-steps-indicator" id="indicator-locutor">
+              <div class="wizard-step-node active" data-step="1">1<span>Perfil</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="2">2<span>Contatos</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="3">3<span>Bio</span></div>
+            </div>
+
+            <form id="form-locutor" novalidate>
+              <input type="hidden" id="locutor-edit-id">
+              
+              <!-- Etapa 1: Informações de Perfil -->
+              <div class="form-step-pane active" data-step="1">
+                <div class="input-group">
+                  <label for="l-nome">Nome Completo</label>
+                  <input type="text" id="l-nome" placeholder="Ex: Juliana Vasconcellos" required>
+                </div>
+                <div class="form-row">
+                  <div class="input-group flex-2">
+                    <label for="l-cargo">Cargo / Função na Rádio</label>
+                    <input type="text" id="l-cargo" placeholder="Ex: Locutora e Jornalista" required>
+                  </div>
+                  <div class="input-group">
+                    <label for="l-ordem">Ordem no Grid</label>
+                    <input type="number" id="l-ordem" min="1" max="10" placeholder="1" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Etapa 2: Mídias & Redes Sociais -->
+              <div class="form-step-pane" data-step="2">
+                <div class="input-group">
+                  <label>Foto de Perfil</label>
+                  <div class="image-upload-wrapper">
+                    <input type="url" id="l-foto" placeholder="Cole a URL da Foto... (opcional)">
+                    <div class="upload-divider"><span>OU</span></div>
+                    <div class="file-upload-box" id="l-upload-box">
+                      <input type="file" id="l-foto-file" accept="image/*" class="file-input-hidden">
+                      <div class="upload-box-content">
+                        <svg class="upload-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <span class="upload-text">Fazer Upload de Imagem</span>
+                      </div>
+                      <div class="upload-box-loading" style="display: none;">
+                        <div class="upload-spinner"></div>
+                        <span>Processando imagem...</span>
+                      </div>
+                      <div class="upload-box-preview" style="display: none;">
+                        <img id="l-upload-preview" src="" alt="Preview">
+                        <button type="button" class="btn-remove-upload" onclick="removerUpload('locutor')">&times;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="input-group">
+                    <label for="l-instagram">Link Instagram</label>
+                    <input type="url" id="l-instagram" placeholder="https://instagram.com/usuario">
+                  </div>
+                  <div class="input-group">
+                    <label for="l-whatsapp">Link WhatsApp (Direto)</label>
+                    <input type="url" id="l-whatsapp" placeholder="https://wa.me/5527999999999">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Etapa 3: Biografia -->
+              <div class="form-step-pane" data-step="3">
+                <div class="input-group">
+                  <label for="l-bio">Biografia Rápida</label>
+                  <textarea id="l-bio" rows="5" placeholder="Escreva uma breve apresentação divertida do locutor..." required></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-admin-cancel" id="btn-cancela-locutor">Cancelar</button>
+                <button type="button" class="btn-wizard-prev" id="btn-prev-locutor" onclick="voltarEtapa('locutor')" style="display: none;">Voltar</button>
+                <button type="button" class="btn-wizard-next" id="btn-next-locutor" onclick="avancarEtapa('locutor')">Avançar</button>
+                <button type="submit" class="btn-admin-save" id="btn-save-locutor" style="display: none;">Salvar Locutor</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Listagem de Locutores -->
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Cargo / Função</th>
+                <th>Ordem</th>
+                <th class="actions-col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="lista-locutores-corpo">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         D. TAB: PATROCINADORES
+         ========================================== -->
+      <section class="admin-section" id="tab-patrocinadores">
+        <div class="section-card-header">
+          <h2>Gerenciar Parceiros & Patrocinadores</h2>
+          <button class="btn-admin-add" id="btn-novo-patrocinador">Adicionar Parceiro</button>
+        </div>
+
+        <!-- Formulário Patrocinador (Modal Wizard Popup) -->
+        <div class="admin-modal-overlay" id="form-patrocinador-wrapper" style="display: none;">
+          <div class="form-container-card modal-card">
+            <div class="modal-card-header">
+              <h3 id="form-patrocinador-titulo">Novo Patrocinador</h3>
+              <button type="button" class="btn-modal-close" onclick="fecharFormulario('patrocinador')">&times;</button>
+            </div>
+
+            <!-- Indicador de Etapas -->
+            <div class="wizard-steps-indicator" id="indicator-patrocinador">
+              <div class="wizard-step-node active" data-step="1">1<span>Empresa</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="2">2<span>Ficha Comercial</span></div>
+              <div class="wizard-step-line"></div>
+              <div class="wizard-step-node" data-step="3">3<span>Logotipo &amp; Link</span></div>
+            </div>
+
+            <form id="form-patrocinador" novalidate>
+              <input type="hidden" id="patrocinador-edit-id">
+              
+              <!-- Etapa 1: Informações da Empresa -->
+              <div class="form-step-pane active" data-step="1">
+                <div class="input-group">
+                  <label for="pat-nome">Nome da Marca / Empresa</label>
+                  <input type="text" id="pat-nome" placeholder="Ex: Supermercados Silva" required>
+                </div>
+                <div class="input-group">
+                  <label for="pat-ordem">Ordem de Exibição</label>
+                  <input type="number" id="pat-ordem" min="1" max="20" placeholder="1" required>
+                </div>
+              </div>
+
+              <!-- Etapa 2: Ficha Comercial (interna) -->
+              <div class="form-step-pane" data-step="2">
+                <p class="ficha-comercial-note">📋 Dados internos — não aparecem no site público.</p>
+                <div class="ficha-comercial-grid">
+                  <div class="input-group">
+                    <label for="pat-cnpj">CNPJ</label>
+                    <input type="text" id="pat-cnpj" placeholder="00.000.000/0000-00" maxlength="18">
+                  </div>
+                  <div class="input-group">
+                    <label for="pat-dia-pgto">Dia do Pagamento</label>
+                    <input type="number" id="pat-dia-pgto" min="1" max="31" placeholder="Ex: 10">
+                  </div>
+                  <div class="input-group">
+                    <label for="pat-renovacao">Tipo de Renovação</label>
+                    <select id="pat-renovacao">
+                      <option value="mensal">Mensal</option>
+                      <option value="anual">Anual</option>
+                    </select>
+                  </div>
+                  <div class="input-group">
+                    <label for="pat-valor">Valor Pago (R$)</label>
+                    <input type="number" id="pat-valor" min="0" step="0.01" placeholder="Ex: 350.00">
+                  </div>
+                </div>
+                <div class="input-group" style="margin-top: 8px;">
+                  <label>Status do Anúncio</label>
+                  <div class="status-toggle-group">
+                    <label class="status-radio-label">
+                      <input type="radio" name="pat-status" id="pat-status-ativo" value="ativo" checked>
+                      <span class="status-radio-pill ativo">✅ Ativo</span>
+                    </label>
+                    <label class="status-radio-label">
+                      <input type="radio" name="pat-status" id="pat-status-inativo" value="inativo">
+                      <span class="status-radio-pill inativo">⛔ Desativado</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Etapa 3: Links e Logo -->
+              <div class="form-step-pane" data-step="3">
+                <div class="input-group">
+                  <label>Logotipo do Patrocinador</label>
+                  <div class="image-upload-wrapper">
+                    <input type="url" id="pat-logo" placeholder="Cole a URL do Logotipo... (opcional)">
+                    <div class="upload-divider"><span>OU</span></div>
+                    <div class="file-upload-box" id="pat-upload-box">
+                      <input type="file" id="pat-logo-file" accept="image/*" class="file-input-hidden">
+                      <div class="upload-box-content">
+                        <svg class="upload-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <span class="upload-text">Fazer Upload de Imagem</span>
+                      </div>
+                      <div class="upload-box-loading" style="display: none;">
+                        <div class="upload-spinner"></div>
+                        <span>Processando imagem...</span>
+                      </div>
+                      <div class="upload-box-preview" style="display: none;">
+                        <img id="pat-upload-preview" src="" alt="Preview">
+                        <button type="button" class="btn-remove-upload" onclick="removerUpload('patrocinador')">&times;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <label for="pat-link">Link do Site / WhatsApp</label>
+                  <input type="url" id="pat-link" placeholder="https://wa.me/... ou https://empresa.com.br">
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-admin-cancel" id="btn-cancela-patrocinador">Cancelar</button>
+                <button type="button" class="btn-wizard-prev" id="btn-prev-patrocinador" onclick="voltarEtapa('patrocinador')" style="display: none;">Voltar</button>
+                <button type="button" class="btn-wizard-next" id="btn-next-patrocinador" onclick="avancarEtapa('patrocinador')">Avançar</button>
+                <button type="submit" class="btn-admin-save" id="btn-save-patrocinador" style="display: none;">Salvar Patrocinador</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Listagem de Patrocinadores -->
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Logotipo</th>
+                <th>Nome da Empresa</th>
+                <th>Status</th>
+                <th>Renovação</th>
+                <th>Dia Pgto</th>
+                <th>Valor</th>
+                <th>Link</th>
+                <th>Ordem</th>
+                <th class="actions-col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="lista-patrocinadores-corpo">
+              <!-- Renderizado via admin.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ========================================
+             PREVIEW DO CARD DE ANÚNCIO
+             ======================================== -->
+        <div class="sponsor-preview-panel">
+          <div class="sponsor-preview-header">
+            <div class="sponsor-preview-header-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <h3>Preview do Card de Anúncio</h3>
+            </div>
+            <span class="sponsor-preview-badge">Proporção Real: 180×180px</span>
+          </div>
+          <p class="sponsor-preview-desc">Veja como o logo do patrocinador aparecerá no site antes de publicar. A imagem é exibida dentro de um círculo — verifique se não está cortada.</p>
+
+          <div class="sponsor-preview-body">
+            <!-- Controles de imagem para o preview -->
+            <div class="sponsor-preview-controls">
+              <div class="input-group">
+                <label for="preview-pat-url">URL do Logotipo</label>
+                <input type="url" id="preview-pat-url" placeholder="Cole a URL do logo aqui...">
+              </div>
+              <div class="upload-divider"><span>OU</span></div>
+              <div class="file-upload-box" id="preview-upload-box" style="height: 52px;">
+                <input type="file" id="preview-logo-file" accept="image/*" class="file-input-hidden">
+                <div class="upload-box-content" style="gap: 8px; flex-direction: row;">
+                  <svg class="upload-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span class="upload-text">Upload para Preview</span>
+                </div>
+                <div class="upload-box-loading" style="display: none; justify-content: center; align-items: center; gap: 8px; height: 100%;">
+                  <div class="upload-spinner"></div>
+                  <span style="font-size: 0.82rem;">Carregando...</span>
+                </div>
+              </div>
+              <button type="button" class="btn-preview-update" id="btn-atualizar-preview" onclick="atualizarPreviewPatrocinador()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Atualizar Preview
+              </button>
+            </div>
+
+            <!-- Card de preview em escala real -->
+            <div class="sponsor-preview-display">
+              <div class="preview-site-context">
+                <span class="preview-context-label">Contexto do Site</span>
+                <div class="preview-fake-grid">
+                  <div class="preview-fake-card ghost"></div>
+                  <div class="preview-fake-card highlight" id="preview-card-live">
+                    <div class="preview-card-inner">
+                      <div class="patrocinador-logo-wrapper" id="preview-logo-wrapper">
+                        <span class="patrocinador-placeholder-logo" id="preview-placeholder-text">Logo aqui</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="preview-fake-card ghost"></div>
+                </div>
+                <p class="preview-warning">⚠️ A imagem é cortada em formato <strong>circular</strong>. Use logos sem fundo ou com fundo branco/transparente.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         E. TAB: LIVE STREAM
+         ========================================== -->
+      <section class="admin-section" id="tab-live">
+        <div class="section-card-header">
+          <h2>Gerenciar Transmissão ao Vivo</h2>
+          <span class="live-status-badge" id="live-current-status">Verificando...</span>
+        </div>
+
+        <!-- Card de Configuração do Link -->
+        <div class="form-container-card" style="display: block; margin-bottom: 24px;">
+          <h3 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 07.07 7.07l1.71-1.71"/></svg>
+            Link da Transmissão (YouTube)
+          </h3>
+          <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 12px;">Cole qualquer link do YouTube abaixo — o sistema converte automaticamente para o formato de incorporação. Clique em <strong>Pré-visualizar</strong> para testar antes de publicar.</p>
+          <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.82rem; color: #fbbf24;">
+            ⚠️ <strong>Se a pré-visualização aparecer em branco:</strong> o canal pode ter o embed desativado no YouTube. Acesse o YouTube Studio → Configurações → Canal → avanced → ative <em>"Permitir incorporação"</em>.
+          </div>
+
+          <div class="live-url-row">
+            <div class="input-group">
+              <label for="live-url-input">URL da Live no YouTube (qualquer formato)</label>
+              <input type="url" id="live-url-input" placeholder="Ex: https://www.youtube.com/live/wU_ZqtX_jJc" style="font-family: monospace;">
+            </div>
+            <div class="live-url-actions">
+              <button type="button" class="btn-live-action btn-live-preview-action" id="btn-live-preview">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                Pré-visualizar
+              </button>
+              <button type="button" class="btn-live-action btn-live-publish-action" id="btn-live-publish">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+                Publicar Live
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card de Pré-visualização -->
+        <div class="form-container-card" id="live-preview-card" style="display: block;">
+          <h3 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--color-gold);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Pré-visualização da Transmissão
+          </h3>
+          <div class="live-preview-frame-wrapper">
+            <iframe id="live-preview-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Pré-visualização da Live"></iframe>
+            <div class="live-preview-placeholder" id="live-preview-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              <p>Cole o link e clique em <strong>Pré-visualizar</strong></p>
+            </div>
+          </div>
+          <div class="live-preview-meta" id="live-preview-meta" style="display: none;">
+            <span class="live-dot-badge"><span class="live-dot"></span> AO VIVO</span>
+            <p>A transmissão acima está sendo exibida no portal. Clique em <strong>Publicar Live</strong> para salvar o link e atualizar o site principal.</p>
+          </div>
+        </div>
+
+        <!-- Card de Status Atual -->
+        <div class="form-container-card" style="display: block;">
+          <h3 style="margin-bottom: 12px;">Link Atualmente Publicado no Site</h3>
+          <div class="live-current-link-display">
+            <code id="live-current-link-text" style="word-break: break-all; color: #94a3b8;">Nenhum link configurado.</code>
+          </div>
+          <div style="margin-top: 16px; display: flex; gap: 8px;">
+            <button type="button" class="btn-admin-cancel" id="btn-live-clear" style="font-size: 0.8rem;">Remover Transmissão do Site</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+         F. TAB: PUBLICIDADE
+         ========================================== -->
+      <section class="admin-section" id="tab-publicidade">
+        <div class="section-card-header">
+          <h2>Gerenciar Cards de Publicidade</h2>
+        </div>
+
+        <form id="form-publicidade" novalidate>
+          <!-- Banner Lateral (Sidebar left) -->
+          <div class="form-container-card" style="display: block; margin-bottom: 30px;">
+            <h3 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+              Banner Lateral (Esquerdo)
+            </h3>
+            
+            <div style="background: rgba(207, 0, 0, 0.08); border: 1px solid rgba(207, 0, 0, 0.25); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; color: #f87171;">
+              💡 <strong>Observação de Medidas:</strong> A largura da barra lateral é fixa no desktop. Para obter uma exibição perfeita e de alta qualidade (sem cortes ou distorções), utilize imagens/textos adaptados para a proporção vertical ideal de <strong>300x900px</strong> (ou proporção de 1:3).
+            </div>
+
+            <div class="form-row">
+              <div class="input-group flex-2">
+                <label for="ad-side-title">Título do Banner</label>
+                <input type="text" id="ad-side-title" placeholder="Ex: ANUNCIE AQUI" required>
+              </div>
+              <div class="input-group">
+                <label for="ad-side-btn">Texto do Botão</label>
+                <input type="text" id="ad-side-btn" placeholder="Ex: Ver Mídia Kit" required>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="ad-side-desc">Descrição / Texto do Banner</label>
+              <textarea id="ad-side-desc" rows="3" placeholder="Sua marca em destaque na rádio mais ouvida..." required></textarea>
+            </div>
+
+            <div class="input-group">
+              <label>Imagem de Fundo do Banner</label>
+              <div class="image-upload-wrapper">
+                <input type="url" id="ad-side-img" placeholder="Cole a URL da Imagem de Fundo... (opcional)">
+                <div class="upload-divider"><span>OU</span></div>
+                <div class="file-upload-box" id="ad-side-upload-box">
+                  <input type="file" id="ad-side-file" accept="image/*" class="file-input-hidden">
+                  <div class="upload-box-content">
+                    <svg class="upload-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span class="upload-text">Fazer Upload de Imagem</span>
+                  </div>
+                  <div class="upload-box-loading" style="display: none;">
+                    <div class="upload-spinner"></div>
+                    <span>Processando imagem...</span>
+                  </div>
+                  <div class="upload-box-preview" style="display: none;">
+                    <img id="ad-side-upload-preview" src="" alt="Preview">
+                    <button type="button" class="btn-remove-upload" onclick="removerUpload('adSidebar')">&times;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="ad-side-link">Link de Destino (URL do Mídia Kit ou WhatsApp)</label>
+              <input type="url" id="ad-side-link" placeholder="Ex: ./pages/comercial.html ou https://wa.me/..." required>
+            </div>
+          </div>
+
+          <!-- Banner Central Horizontal (Bottom) -->
+          <div class="form-container-card" style="display: block; margin-bottom: 30px;">
+            <h3 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+              Banner Central Horizontal (Inferior)
+            </h3>
+
+            <div style="background: rgba(207, 0, 0, 0.08); border: 1px solid rgba(207, 0, 0, 0.25); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; color: #f87171;">
+              💡 <strong>Observação de Medidas:</strong> Este banner ocupa toda a largura da coluna central no desktop. Recomenda-se utilizar materiais e textos configurados para uma proporção retangular horizontal de <strong>900x150px</strong> (ou proporção de 6:1) para preencher harmonicamente o espaço.
+            </div>
+
+            <div class="form-row">
+              <div class="input-group flex-2">
+                <label for="ad-bottom-title">Título do Banner</label>
+                <input type="text" id="ad-bottom-title" placeholder="Ex: ANUNCIE NA EMISSORA MAIS OUVIDA" required>
+              </div>
+              <div class="input-group">
+                <label for="ad-bottom-tagline">Tagline / Chamada Curta</label>
+                <input type="text" id="ad-bottom-tagline" placeholder="Ex: 📢 SEU ANÚNCIO AQUI" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group flex-2">
+                <label for="ad-bottom-desc">Descrição / Texto do Banner</label>
+                <input type="text" id="ad-bottom-desc" placeholder="Conecte sua empresa a mais de 2.6 milhões..." required>
+              </div>
+              <div class="input-group">
+                <label for="ad-bottom-btn">Texto do Botão</label>
+                <input type="text" id="ad-bottom-btn" placeholder="Ex: Fale com um Consultor" required>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Imagem de Fundo do Banner</label>
+              <div class="image-upload-wrapper">
+                <input type="url" id="ad-bottom-img" placeholder="Cole a URL da Imagem de Fundo... (opcional)">
+                <div class="upload-divider"><span>OU</span></div>
+                <div class="file-upload-box" id="ad-bottom-upload-box">
+                  <input type="file" id="ad-bottom-file" accept="image/*" class="file-input-hidden">
+                  <div class="upload-box-content">
+                    <svg class="upload-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span class="upload-text">Fazer Upload de Imagem</span>
+                  </div>
+                  <div class="upload-box-loading" style="display: none;">
+                    <div class="upload-spinner"></div>
+                    <span>Processando imagem...</span>
+                  </div>
+                  <div class="upload-box-preview" style="display: none;">
+                    <img id="ad-bottom-upload-preview" src="" alt="Preview">
+                    <button type="button" class="btn-remove-upload" onclick="removerUpload('adBottom')">&times;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="ad-bottom-link">Link de Destino</label>
+              <input type="url" id="ad-bottom-link" placeholder="Ex: ./pages/comercial.html ou https://wa.me/..." required>
+            </div>
+          </div>
+
+          <!-- Ações -->
+          <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 20px;">
+            <button type="submit" class="btn-admin-save" id="btn-save-publicidade" style="padding: 14px 30px; font-size: 0.95rem; border-radius: 12px; font-weight: bold;">
+              Salvar Alterações de Publicidade
+            </button>
+          </div>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/admin.js"></script>
+</body>
+</html>

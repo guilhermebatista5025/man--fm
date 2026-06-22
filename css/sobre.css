@@ -1,0 +1,727 @@
+/* ==========================================================================
+   RÁDIO PULSO FM - PÁGINA SOBRE A RÁDIO (INSTITUCIONAL)
+   ========================================================================== */
+
+/* 1. Reset e Estilos Gerais da Página */
+.sobre-body {
+  background-color: var(--bg-primary);
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  overflow-x: hidden;
+}
+
+/* Margem superior para compensar o header fixo */
+.sobre-hero {
+  position: relative;
+  padding: 120px 0 140px 0;
+  background: linear-gradient(rgba(26, 26, 26, 0.45), rgba(26, 26, 26, 0.7)), url('../assets/images/sobre_hero_studio.png') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 580px;
+}
+
+.container-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4%;
+  position: relative;
+  z-index: 5;
+}
+
+/* 2. Hero Section */
+.sobre-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sobre-hero-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #f4eee1;
+  background: rgba(166, 124, 30, 0.4);
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(166, 124, 30, 0.6);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.sobre-hero-title {
+  font-family: var(--font-accent);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  margin-bottom: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.sobre-hero-title span {
+  color: #e5c158;
+  position: relative;
+  display: inline-block;
+}
+
+.sobre-hero-title span::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(166, 124, 30, 0.2);
+  z-index: -1;
+}
+
+.sobre-hero-desc {
+  display: none;
+}
+
+/* Wave separator */
+.hero-wave-separator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  line-height: 0;
+  z-index: 2;
+}
+
+.hero-wave-separator svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 3. Section Common Intros */
+.section-intro {
+  max-width: 700px;
+  margin: 0 auto 5rem auto;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-gray);
+  margin-top: 1rem;
+}
+
+/* 4. História Section & Timeline */
+.sobre-historia {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+  position: relative;
+}
+
+.historia-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* Coluna da Imagem */
+.historia-img-col {
+  position: relative;
+}
+
+.historia-img-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-dark);
+  line-height: 0;
+}
+
+.historia-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: var(--transition);
+  display: block;
+}
+
+.historia-img-frame:hover .historia-img {
+  transform: scale(1.03);
+}
+
+.historia-img-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--color-gold);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(166, 124, 30, 0.25);
+  z-index: 10;
+}
+
+/* Coluna de Texto (Narrativa) */
+.historia-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.historia-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.narrative-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold);
+  background: rgba(166, 124, 30, 0.08);
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(166, 124, 30, 0.15);
+}
+
+.narrative-title {
+  font-family: var(--font-accent);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-white);
+  margin-bottom: 1.5rem;
+}
+
+.narrative-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-gray);
+}
+
+@media (min-width: 992px) {
+  .historia-layout {
+    grid-template-columns: 46% 48%;
+    gap: 6%;
+    align-items: center;
+  }
+}
+
+/* 5. Missão, Visão e Valores (Bento Grid) */
+.sobre-mvv {
+  padding: 100px 0;
+  background-color: var(--bg-primary);
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.bento-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-dark);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-gold);
+  border-color: rgba(166, 124, 30, 0.4);
+}
+
+.bento-card h3 {
+  font-family: var(--font-accent);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.bento-card p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-gray);
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(166, 124, 30, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+  border: 1px solid rgba(166, 124, 30, 0.15);
+}
+
+.bento-card:hover .card-icon {
+  background: var(--color-gold);
+  color: #ffffff;
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Bento Card specific backgrounds/gradients */
+.card-missao {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 238, 225, 0.4) 100%);
+}
+
+.card-visao {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(230, 240, 245, 0.2) 100%);
+}
+
+.card-valores {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 238, 225, 0.7) 100%);
+  border-left: 4px solid var(--color-gold);
+}
+
+.valores-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.valores-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-gray);
+}
+
+.valores-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-gold);
+  font-size: 0.9rem;
+}
+
+.valores-list li strong {
+  color: var(--color-white);
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+/* 6. Cobertura de Sinal */
+.sobre-cobertura {
+  padding: 100px 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.cobertura-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.cobertura-info h2 {
+  font-family: var(--font-accent);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 1.5rem 0;
+}
+
+.cobertura-info h2 span {
+  color: var(--color-gold);
+}
+
+.cobertura-info p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-gray);
+  margin-bottom: 2rem;
+}
+
+.cobertura-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 2rem;
+}
+
+.stat-item h4 {
+  font-family: var(--font-accent);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.stat-item p {
+  font-size: 0.85rem;
+  color: var(--color-gray);
+  margin: 0.5rem 0 0 0;
+  line-height: 1.3;
+}
+
+.municipios-lista {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.municipios-lista li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  color: var(--color-gray);
+}
+
+.municipios-lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+}
+
+.municipios-lista li strong {
+  color: var(--color-white);
+}
+
+/* Mapa Radar SVG Estilização */
+.cobertura-map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: var(--shadow-dark);
+  overflow: hidden;
+}
+
+.interactive-map-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Concentric Rings of Signal */
+.signal-ring {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 1.5;
+  opacity: 0.15;
+  transform-origin: 250px 250px;
+}
+
+.ring-1 { animation: pulse-ring 4s infinite linear; }
+.ring-2 { animation: pulse-ring 4s infinite linear 1s; }
+.ring-3 { animation: pulse-ring 4s infinite linear 2s; }
+.ring-4 { animation: pulse-ring 4s infinite linear 3s; }
+
+@keyframes pulse-ring {
+  0% {
+    stroke-width: 1.5;
+    opacity: 0.15;
+  }
+  50% {
+    stroke-width: 2.5;
+    opacity: 0.3;
+  }
+  100% {
+    stroke-width: 1.5;
+    opacity: 0.15;
+  }
+}
+
+/* Radar Sweep Line Animation */
+.radar-line {
+  stroke: var(--color-gold);
+  stroke-width: 1;
+  opacity: 0.25;
+  stroke-dasharray: 4 4;
+}
+
+.interactive-map-svg {
+  animation: rotate-map 20s infinite linear;
+}
+
+@keyframes rotate-map {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Stop labels from rotating */
+.city-label, .core-point, .glow-effect {
+  transform-origin: inherit;
+}
+
+/* Adjust layout to support static points and rotating rings */
+.map-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 30px;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 30%, rgba(244, 238, 225, 0.15) 100%);
+}
+
+/* Cities Group */
+.city-point {
+  cursor: pointer;
+}
+
+.core-point {
+  fill: var(--color-gold);
+  transition: var(--transition);
+}
+
+.glow-effect {
+  fill: var(--color-gold);
+  opacity: 0.25;
+  animation: glow-pulse-point 2s infinite ease-in-out;
+}
+
+.city-point:hover .core-point {
+  fill: var(--color-white);
+  r: 7px;
+}
+
+.city-point:hover .glow-effect {
+  opacity: 0.6;
+  animation: glow-pulse-point 0.8s infinite ease-in-out;
+}
+
+.main-city .core-point {
+  fill: var(--color-gold);
+  r: 9px;
+}
+
+.main-city .glow-effect {
+  animation: glow-pulse-point 1.5s infinite ease-in-out;
+}
+
+.city-label {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 500;
+  fill: var(--color-white);
+  pointer-events: none;
+  /* Cancel the rotation effect on texts */
+}
+
+.label-main {
+  font-weight: 700;
+  fill: var(--color-gold);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+@keyframes glow-pulse-point {
+  0% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+}
+
+/* 7. Estrutura da Emissora (Infraestrutura) */
+.sobre-estrutura {
+  padding: 100px 0;
+  background-color: var(--bg-primary);
+}
+
+.estrutura-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.estrutura-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-dark);
+  transition: var(--transition);
+}
+
+.estrutura-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-gold);
+  border-color: rgba(166, 124, 30, 0.4);
+}
+
+.estrutura-img-frame {
+  height: 200px;
+  position: relative;
+  background: rgba(166, 124, 30, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-glass);
+  overflow: hidden;
+}
+
+.estrutura-icon-svg {
+  width: 100%;
+  height: 100%;
+  color: var(--color-gold);
+  transition: var(--transition);
+}
+
+.estrutura-card:hover .estrutura-icon-svg {
+  transform: scale(1.05);
+  color: var(--color-gold-hover);
+}
+
+.estrutura-text {
+  padding: 2rem;
+}
+
+.estrutura-text h3 {
+  font-family: var(--font-accent);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.8rem;
+}
+
+.estrutura-text p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-gray);
+}
+
+/* ==========================================================================
+   8. Breakpoints & Responsividade (Media Queries)
+   ========================================================================== */
+
+/* Telas Médias (Tablets) */
+@media (min-width: 768px) {
+  .sobre-hero {
+    padding: 240px 0 180px 0;
+    min-height: 640px;
+  }
+
+  .sobre-hero-title {
+    font-size: 4.5rem;
+  }
+
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-valores {
+    grid-column: span 2;
+  }
+
+  .cobertura-layout {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+  }
+
+  .estrutura-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Telas Grandes (Desktops) */
+@media (min-width: 992px) {
+  .sobre-hero-title {
+    font-size: 5rem;
+  }
+
+  /* Bento Grid Real Layout */
+  .bento-grid {
+    grid-template-areas: 
+      "missao valores"
+      "visao valores";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2.5rem;
+  }
+
+  .card-missao {
+    grid-area: missao;
+  }
+
+  .card-visao {
+    grid-area: visao;
+  }
+
+  .card-valores {
+    grid-area: valores;
+    grid-column: auto;
+  }
+
+  .cobertura-layout {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
+  }
+
+  .estrutura-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* Animações e Efeitos de Reveal Adicionais */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
